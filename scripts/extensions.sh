@@ -25,9 +25,13 @@ fi
 
 cd /var/www/pterodactyl || { echo -e "${RED}Panel not found!${NC}"; exit 1; }
 
+# Download blueprints from repo
+REPO_URL="https://raw.githubusercontent.com/Sayskh/VPS/main/plugin"
+
 echo -e "${YELLOW}⏳ Downloading extensions...${NC}"
-wget -q https://github.com/NotJishnuisback/Free123/raw/refs/heads/main/minecraftplayermanager.blueprint
-wget -q https://github.com/NotJishnuisback/Free123/raw/refs/heads/main/mcplugins.blueprint
+wget -q "${REPO_URL}/mcplugins.blueprint"
+wget -q "${REPO_URL}/minecraftplayermanager.blueprint"
+wget -q "${REPO_URL}/subdomains.blueprint"
 echo -e "${GREEN}✅ Extensions downloaded${NC}"
 
 echo -e "${YELLOW}⏳ Installing mcplugins...${NC}"
@@ -36,7 +40,11 @@ blueprint -i mcplugins.blueprint && echo -e "${GREEN}✅ mcplugins installed${NC
 echo -e "${YELLOW}⏳ Installing minecraftplayermanager...${NC}"
 blueprint -i minecraftplayermanager.blueprint && echo -e "${GREEN}✅ MC Player Manager installed${NC}"
 
+echo -e "${YELLOW}⏳ Installing subdomains...${NC}"
+blueprint -i subdomains.blueprint && echo -e "${GREEN}✅ Subdomains installed${NC}"
+
 echo -e "\n${GREEN}🎉 All extensions installed!${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${CYAN}           Thank you for using Hio's Tools!     ${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+

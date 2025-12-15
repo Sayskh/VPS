@@ -15,7 +15,7 @@ BOLD='\033[1m'
 NC='\033[0m'
 
 # Base URL for scripts (change this to your GitHub raw URL)
-BASE_URL="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/scripts"
+BASE_URL="https://raw.githubusercontent.com/Sayskh/VPS/main/scripts"
 
 print_header() {
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
