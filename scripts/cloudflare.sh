@@ -9,8 +9,15 @@ NC='\033[0m'
 
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}          ☁️  CLOUDFLARED INSTALLER               ${NC}"
-echo -e "${CYAN}                  by Hio                         ${NC}"
+echo -e "${CYAN}"
+echo ' ______  __      ______  __  __  _____         '
+echo '/\  ___\/\ \    /\  __ \/\ \/\ \/\  __-.       '
+echo '\ \ \___\ \ \___\ \ \/\ \ \ \_\ \ \ \/\ \      '
+echo ' \ \_____\ \_____\ \_____\ \_____\ \____-      '
+echo '  \/_____/\/_____/\/_____/\/_____/\/____/      '
+echo -e "${NC}"
+echo -e "${CYAN}           Cloudflared Installer${NC}"
+echo -e "${CYAN}                by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then

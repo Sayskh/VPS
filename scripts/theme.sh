@@ -10,8 +10,15 @@ NC='\033[0m'
 
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}            🎨 PTERODACTYL THEME MANAGER          ${NC}"
-echo -e "${CYAN}                    by Hio                       ${NC}"
+echo -e "${CYAN}"
+echo ' ______  __  __  ______  __    __  ______       '
+echo '/\__  _\/\ \_\ \/\  ___\/\ "-./  \/\  ___\      '
+echo '\/_/\ \/\ \  __ \ \  __\\ \ \-./\ \ \  __\      '
+echo '   \ \_\ \ \_\ \_\ \_____\ \_\ \ \_\ \_____\    '
+echo '    \/_/  \/_/\/_/\/_____/\/_/  \/_/\/_____/    '
+echo -e "${NC}"
+echo -e "${CYAN}           Pterodactyl Theme Manager${NC}"
+echo -e "${CYAN}                   by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then

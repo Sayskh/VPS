@@ -9,8 +9,15 @@ NC='\033[0m'
 
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}         🧩 BLUEPRINT EXTENSIONS INSTALLER        ${NC}"
-echo -e "${CYAN}                    by Hio                       ${NC}"
+echo -e "${CYAN}"
+echo ' ______  __  __  ______  ______  __   __  ______  '
+echo '/\  ___\/\_\_\_\/\__  _\/\  ___\/\ "-.\ \/\  ___\ '
+echo '\ \  __\\/_/\_\/\/_/\ \/\ \  __\\ \ \-.  \ \___  \'
+echo ' \ \_____\/\_\/\_\ \ \_\ \ \_____\ \_\\"\_\/\_____\'
+echo '  \/_____/\/_/\/_/  \/_/  \/_____/\/_/ \/_/\/_____/'
+echo -e "${NC}"
+echo -e "${CYAN}        Blueprint Extensions Installer${NC}"
+echo -e "${CYAN}                  by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then

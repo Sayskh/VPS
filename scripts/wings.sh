@@ -34,8 +34,15 @@ check_success() {
 # Welcome
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}            🚀 PTERODACTYL WINGS INSTALLER        ${NC}"
-echo -e "${CYAN}                     by Hio                      ${NC}"
+echo -e "${CYAN}"
+echo ' __     __  __  __   __  ______  ______        '
+echo '/\ \  _ \ \/\ \/\ "-.\ \/\  ___\/\  ___\       '
+echo '\ \ \/ ".\ \ \ \ \ \-.  \ \ \__ \ \___  \      '
+echo ' \ \__/".~\_\ \_\ \_\\"\_\ \_____\/\_____\     '
+echo '  \/_/   \/_/\/_/\/_/ \/_/\/_____/\/_____/     '
+echo -e "${NC}"
+echo -e "${CYAN}           Pterodactyl Wings Installer${NC}"
+echo -e "${CYAN}                    by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 # Check root

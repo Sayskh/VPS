@@ -30,8 +30,15 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}           🚀 PTERODACTYL PANEL INSTALLER         ${NC}"
-echo -e "${CYAN}                   by Hio                        ${NC}"
+echo -e "${CYAN}"
+echo ' ______  ______  __   __  ______  __           '
+echo '/\  == \/\  __ \/\ "-.\ \/\  ___\/\ \          '
+echo '\ \  _-/\ \  __ \ \ \-.  \ \  __\\ \ \____     '
+echo ' \ \_\   \ \_\ \_\ \_\\"\_\ \_____\ \_____\    '
+echo '  \/_/    \/_/\/_/\/_/ \/_/\/_____/\/_____/    '
+echo -e "${NC}"
+echo -e "${CYAN}           Pterodactyl Panel Installer${NC}"
+echo -e "${CYAN}                    by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 # Get domain input

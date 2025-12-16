@@ -128,8 +128,15 @@ uninstall_both() {
 show_menu() {
     clear
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${RED}            🗑️  PTERODACTYL UNINSTALLER          ${NC}"
-    echo -e "${CYAN}                     by Hio                      ${NC}"
+    echo -e "${RED}"
+    echo ' __  __  __   __  __  __   __  ______  ______  '
+    echo '/\ \/\ \/\ "-.\ \/\ \/\ "-.\ \/\  ___\/\__  _\ '
+    echo '\ \ \_\ \ \ \-.  \ \ \ \ \-.  \ \___  \/_/\ \/ '
+    echo ' \ \_____\ \_\\"\_\ \_\ \_\\"\_\/\_____\ \ \_\ '
+    echo '  \/_____/\/_/ \/_/\/_/\/_/ \/_/\/_____/  \/_/ '
+    echo -e "${NC}"
+    echo -e "${RED}           Pterodactyl Uninstaller${NC}"
+    echo -e "${CYAN}                  by Hio${NC}"
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e ""
     echo -e "${WHITE}╔═══════════════════════════════════════════════╗${NC}"

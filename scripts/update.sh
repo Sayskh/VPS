@@ -37,8 +37,15 @@ spinner() {
 # Welcome
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}            🔄 PTERODACTYL PANEL UPDATER          ${NC}"
-echo -e "${CYAN}                     by Hio                      ${NC}"
+echo -e "${CYAN}"
+echo ' __  __  ______  _____   ______  ______  ______  '
+echo '/\ \/\ \/\  == \/\  __-./\  __ \/\__  _\/\  ___\ '
+echo '\ \ \_\ \ \  _-/\ \ \/\ \ \  __ \/_/\ \/\ \  __\ '
+echo ' \ \_____\ \_\   \ \____-\ \_\ \_\ \ \_\ \ \_____\'
+echo '  \/_____/\/_/    \/____/ \/_/\/_/  \/_/  \/_____/'
+echo -e "${NC}"
+echo -e "${CYAN}           Pterodactyl Panel Updater${NC}"
+echo -e "${CYAN}                   by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 # Check root
