@@ -162,12 +162,12 @@ show_menu() {
     echo -e "${CYAN}                  Pterodactyl Tools               ${NC}"
     print_header
     echo -e "${CYAN}"
-    echo "  _    _ _         _        _____           _     "
-    echo " | |  | (_)       ( )      |_   _|___   ___ | |___ "
-    echo " | |__| | _  ___  |/ ___     | | / _ \ / _ \| / __|"
-    echo " |  __  | | / _ \   / __|    | || (_) | (_) | \__ \\"
-    echo " | |  | | || (_) |  \__ \    | | \___/ \___/|_|___/"
-    echo " |_|  |_|_| \___/   |___/    |_|                   "
+    echo "  _    _ _       "
+    echo " | |  | (_)      "
+    echo " | |__| |_  ___  "
+    echo " |  __  | |/ _ \ "
+    echo " | |  | | | (_) |"
+    echo " |_|  |_|_|\___/ "
     echo -e "${NC}"
     print_header
     echo -e ""
@@ -192,12 +192,12 @@ welcome() {
     clear
     print_header
     echo -e "${CYAN}"
-    echo "  _    _ _         _        _____           _     "
-    echo " | |  | (_)       ( )      |_   _|___   ___ | |___ "
-    echo " | |__| | _  ___  |/ ___     | | / _ \ / _ \| / __|"
-    echo " |  __  | | / _ \   / __|    | || (_) | (_) | \__ \\"
-    echo " | |  | | || (_) |  \__ \    | | \___/ \___/|_|___/"
-    echo " |_|  |_|_| \___/   |___/    |_|                   "
+    echo "  _    _ _       "
+    echo " | |  | (_)      "
+    echo " | |__| |_  ___  "
+    echo " |  __  | |/ _ \ "
+    echo " | |  | | | (_) |"
+    echo " |_|  |_|_|\___/ "
     echo -e "${NC}"
     echo -e "${CYAN}                 Hosting Manager${NC}"
     print_header
