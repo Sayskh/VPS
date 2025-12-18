@@ -49,15 +49,6 @@ if [ -z "$DOMAIN" ]; then
     exit 1
 fi
 
-# Get database password
-read -sp "$(echo -e "${YELLOW}Enter database password for pterodactyl user: ${NC}")" DB_PASS
-echo ""
-
-if [ -z "$DB_PASS" ]; then
-    print_error "Database password cannot be empty!"
-    exit 1
-fi
-
 print_header "INSTALLING DEPENDENCIES"
 print_status "Updating system and installing required packages"
 apt update && apt install -y curl apt-transport-https ca-certificates gnupg unzip git tar sudo lsb-release
@@ -108,6 +99,15 @@ print_success "Panel files downloaded and extracted"
 print_header "SETTING UP DATABASE"
 DB_NAME="panel"
 DB_USER="pterodactyl"
+
+# Get database password
+read -sp "$(echo -e "${YELLOW}Enter database password for pterodactyl user: ${NC}")" DB_PASS
+echo ""
+
+if [ -z "$DB_PASS" ]; then
+    print_error "Database password cannot be empty!"
+    exit 1
+fi
 
 print_status "Creating database and user"
 mariadb -e "CREATE USER IF NOT EXISTS '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASS}';"
