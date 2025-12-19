@@ -1,17 +1,18 @@
 #!/bin/bash
 
-# Color Scheme: Neon Green, Red, Yellow
-NEON='\033[38;5;118m'       # Hijau stabilo/neon green
-RED='\033[0;91m'            # Merah terang
-YELLOW='\033[0;93m'         # Kuning terang
+NEON='\033[38;5;118m'
+ORANGE='\033[38;5;208m'
+PURPLE='\033[0;35m'
+RED='\033[0;91m'
+YELLOW='\033[0;93m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
 clear
-echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${NEON}        Blueprint Extensions Installer${NC}"
-echo -e "${NEON}                  by Hio${NC}"
-echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${ORANGE}        Blueprint Extensions Installer${NC}"
+echo -e "${ORANGE}                  by Hio${NC}"
+echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}❌ Please run as root${NC}"

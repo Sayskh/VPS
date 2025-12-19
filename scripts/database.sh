@@ -1,19 +1,15 @@
 #!/bin/bash
 
-# ============================================
-# DATABASE REMOTE ACCESS SETUP
-# by Hio
-# ============================================
-
-# Color Scheme: Neon Green, Red, Yellow
 NEON='\033[38;5;118m'
+ORANGE='\033[38;5;208m'
+PURPLE='\033[0;35m'
 RED='\033[0;91m'
 YELLOW='\033[0;93m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -22,8 +18,8 @@ print_error() { echo -e "${RED}❌ $1${NC}"; }
 
 clear
 print_header
-echo -e "${NEON}        Database Remote Access Setup${NC}"
-echo -e "${NEON}                  by Hio${NC}"
+echo -e "${ORANGE}        Database Remote Access Setup${NC}"
+echo -e "${ORANGE}                  by Hio${NC}"
 print_header
 echo ""
 
@@ -83,11 +79,11 @@ print_header
 echo -e "${GREEN}✅ Database remote access configured!${NC}"
 print_header
 echo ""
-echo -e "${NEON}Connection Details:${NC}"
+echo -e "${ORANGE}Connection Details:${NC}"
 echo -e "  • Username: ${GREEN}${DB_USER}${NC}"
 echo -e "  • Host: ${GREEN}YOUR_SERVER_IP${NC}"
 echo -e "  • Port: ${GREEN}3306${NC}"
 echo ""
 print_header
-echo -e "${NEON}           Thank you for using Hio Tools!${NC}"
+echo -e "${ORANGE}           Thank you for using Hio Tools!${NC}"
 print_header

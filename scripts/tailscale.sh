@@ -1,19 +1,15 @@
 #!/bin/bash
 
-# ============================================
-# TAILSCALE VPN INSTALLER
-# by Hio
-# ============================================
-
-# Color Scheme: Neon Green, Red, Yellow
 NEON='\033[38;5;118m'
+ORANGE='\033[38;5;208m'
+PURPLE='\033[0;35m'
 RED='\033[0;91m'
 YELLOW='\033[0;93m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -22,8 +18,8 @@ print_error() { echo -e "${RED}❌ $1${NC}"; }
 
 clear
 print_header
-echo -e "${NEON}           Tailscale VPN Installer${NC}"
-echo -e "${NEON}                  by Hio${NC}"
+echo -e "${ORANGE}           Tailscale VPN Installer${NC}"
+echo -e "${ORANGE}                  by Hio${NC}"
 print_header
 echo ""
 
@@ -47,7 +43,7 @@ if curl -fsSL https://tailscale.com/install.sh | sh; then
         systemctl enable --now tailscaled || true
     fi
     
-    echo -e "${NEON}Starting Tailscale...${NC}"
+    echo -e "${ORANGE}Starting Tailscale...${NC}"
     
     if [ -n "${TS_AUTH_KEY:-}" ]; then
         tailscale up --auth-key="$TS_AUTH_KEY" && print_success "Connected via auth key"
@@ -62,5 +58,5 @@ fi
 
 echo ""
 print_header
-echo -e "${NEON}           Thank you for using Hio Tools!${NC}"
+echo -e "${ORANGE}           Thank you for using Hio Tools!${NC}"
 print_header

@@ -1,14 +1,10 @@
 #!/bin/bash
-
-# ============================================
-# HIO'S PTERODACTYL HOSTING MANAGER
-# ============================================
-
-# Color Scheme: Neon Green, Red, Yellow
-NEON='\033[38;5;118m'
-RED='\033[0;91m'
-YELLOW='\033[0;93m'
+NEON='\033[38;5;118m'    
+ORANGE='\033[38;5;208m'   
+PURPLE='\033[0;35m'   
+RED='\033[0;91m'       
 GREEN='\033[0;32m'
+YELLOW='\033[0;93m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
 NC='\033[0m'
@@ -27,7 +23,7 @@ animate_text() {
 }
 
 print_header() {
-    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -49,7 +45,7 @@ run_script() {
     local name=$2
     
     print_header
-    echo -e "${NEON}Running: ${BOLD}${name}${NC}"
+    echo -e "${ORANGE}Running: ${BOLD}${name}${NC}"
     print_header
     
     check_curl
@@ -69,7 +65,6 @@ run_script() {
     read -p "$(echo -e "${YELLOW}Press Enter to continue...${NC}")" -n 1
 }
 
-# Animated header
 header=(
 "========================="
 " __   __  ___   _______ "
@@ -85,27 +80,26 @@ header=(
 
 # Menu options
 menu=(
-"  ${WHITE}1)${NC} ${YELLOW}Panel Installation${NC}"
-"  ${WHITE}2)${NC} ${YELLOW}Wings Installation${NC}"
-"  ${WHITE}3)${NC} ${YELLOW}Panel Update${NC}"
-"  ${WHITE}4)${NC} ${YELLOW}Uninstall Tools${NC}"
-"  ${WHITE}5)${NC} ${YELLOW}Blueprint Setup${NC}"
-"  ${WHITE}6)${NC} ${YELLOW}Cloudflare Tunnel${NC}"
-"  ${WHITE}7)${NC} ${YELLOW}Theme Manager${NC}"
-"  ${WHITE}8)${NC} ${YELLOW}System Information${NC}"
-"  ${WHITE}9)${NC} ${YELLOW}Tailscale VPN${NC}"
-" ${WHITE}10)${NC} ${YELLOW}Database Setup${NC}"
-" ${WHITE}11)${NC} ${YELLOW}Blueprint Extensions${NC}"
-" ${WHITE}12)${NC} ${YELLOW}DDoS Protection${NC}"
-"  ${WHITE}0)${NC} ${RED}Exit${NC}"
+"  1) Panel Installation"
+"  2) Wings Installation"
+"  3) Panel Update"
+"  4) Uninstall Tools"
+"  5) Blueprint Setup"
+"  6) Cloudflare Tunnel"
+"  7) Theme Manager"
+"  8) System Benchmark"
+"  9) Tailscale VPN"
+" 10) Database Setup"
+" 11) Blueprint Extensions"
+" 12) DDoS Protection"
+"  0) Exit"
 )
 
 show_menu() {
     clear
     
-    # Animated header
     for line in "${header[@]}"; do
-        echo -e "${NEON}${BOLD}$line${NC}"
+        echo -e "${ORANGE}${BOLD}$line${NC}"
         sleep 0.04
     done
     
@@ -113,15 +107,14 @@ show_menu() {
     print_header
     echo ""
     
-    # Menu options
     for option in "${menu[@]}"; do
-        echo -e "$option"
+        echo -e "${PURPLE}$option${NC}"
         sleep 0.02
     done
     
     echo ""
     print_header
-    echo -e "${RED}${BOLD}📝 Select option [0-12]: ${NC}"
+    echo -e "${ORANGE}${BOLD}📝 Select option [0-12]: ${NC}"
 }
 
 # Main loop
@@ -137,7 +130,7 @@ while true; do
         5)  run_script "${BASE_URL}/blueprint.sh" "Blueprint Setup" ;;
         6)  run_script "${BASE_URL}/cloudflare.sh" "Cloudflare Tunnel" ;;
         7)  run_script "${BASE_URL}/theme.sh" "Theme Manager" ;;
-        8)  run_script "${BASE_URL}/sysinfo.sh" "System Information" ;;
+        8)  run_script "${BASE_URL}/sysinfo.sh" "System Benchmark" ;;
         9)  run_script "${BASE_URL}/tailscale.sh" "Tailscale VPN" ;;
         10) run_script "${BASE_URL}/database.sh" "Database Setup" ;;
         11) run_script "${BASE_URL}/extensions.sh" "Blueprint Extensions" ;;
