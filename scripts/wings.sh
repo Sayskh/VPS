@@ -1,20 +1,18 @@
 #!/bin/bash
 set -e
 
-# Colors for output
-RED='\033[0;31m'
+# Color Scheme: Neon Green, Red, Yellow
+NEON='\033[38;5;118m'       # Hijau stabilo/neon green
+RED='\033[0;91m'            # Merah terang
+YELLOW='\033[0;93m'         # Kuning terang
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN} $1 ${NC}"
-    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+    echo -e "\n${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON} $1 ${NC}"
+    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -34,13 +32,6 @@ check_success() {
 # Welcome
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}"
-echo ' __     __  __  __   __  ______  ______        '
-echo '/\ \  _ \ \/\ \/\ "-.\ \/\  ___\/\  ___\       '
-echo '\ \ \/ ".\ \ \ \ \ \-.  \ \ \__ \ \___  \      '
-echo ' \ \__/".~\_\ \_\ \_\\"\_\ \_____\/\_____\     '
-echo '  \/_/   \/_/\/_/\/_/ \/_/\/_____/\/_____/     '
-echo -e "${NC}"
 echo -e "${CYAN}           Pterodactyl Wings Installer${NC}"
 echo -e "${CYAN}                    by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
@@ -224,5 +215,5 @@ fi
 
 echo -e ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}              Thank you for using Hio's Tools!   ${NC}"
+echo -e "${CYAN}              Thank you for using Hio Tools!   ${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

@@ -1,19 +1,17 @@
 #!/bin/bash
 set -e
 
-# Colors
-RED='\033[0;31m'
+# Color Scheme: Neon Green, Red, Yellow
+NEON='\033[38;5;118m'       # Hijau stabilo/neon green
+RED='\033[0;91m'            # Merah terang
+YELLOW='\033[0;93m'         # Kuning terang
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN} $1 ${NC}"
-    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+    echo -e "\n${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON} $1 ${NC}"
+    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -37,13 +35,6 @@ spinner() {
 # Welcome
 clear
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}"
-echo ' __  __  ______  _____   ______  ______  ______  '
-echo '/\ \/\ \/\  == \/\  __-./\  __ \/\__  _\/\  ___\ '
-echo '\ \ \_\ \ \  _-/\ \ \/\ \ \  __ \/_/\ \/\ \  __\ '
-echo ' \ \_____\ \_\   \ \____-\ \_\ \_\ \ \_\ \ \_____\'
-echo '  \/_____/\/_/    \/____/ \/_/\/_/  \/_/  \/_____/'
-echo -e "${NC}"
 echo -e "${CYAN}           Pterodactyl Panel Updater${NC}"
 echo -e "${CYAN}                   by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
@@ -146,7 +137,7 @@ echo -e ""
 echo -e "${YELLOW}🔍 Verify your panel is working correctly!${NC}"
 echo -e ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}              Thank you for using Hio's Tools!   ${NC}"
+echo -e "${CYAN}              Thank you for using Hio Tools!   ${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
 read -p "$(echo -e "${YELLOW}Press Enter to exit...${NC}")" -n 1

@@ -4,68 +4,63 @@
 # HIO'S PTERODACTYL HOSTING MANAGER
 # ============================================
 
-RED='\033[0;31m'
+# Color Scheme: Neon Green, Red, Yellow
+NEON='\033[38;5;118m'
+RED='\033[0;91m'
+YELLOW='\033[0;93m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-# Base URL for scripts (change this to your GitHub raw URL)
 BASE_URL="https://raw.githubusercontent.com/Sayskh/VPS/main/scripts"
 
+# Animated text function
+animate_text() {
+    local text="$1"
+    local delay="${2:-0.02}"
+    for ((i=0; i<${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep "$delay"
+    done
+    echo ""
+}
+
 print_header() {
-    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
 print_success() { echo -e "${GREEN}✅ $1${NC}"; }
 print_error() { echo -e "${RED}❌ $1${NC}"; }
 
+# Check and install curl
 check_curl() {
     if ! command -v curl &>/dev/null; then
-        print_error "curl not installed"
         print_status "Installing curl"
-        if command -v apt-get &>/dev/null; then
-            apt-get update && apt-get install -y curl
-        elif command -v yum &>/dev/null; then
-            yum install -y curl
-        elif command -v dnf &>/dev/null; then
-            dnf install -y curl
-        else
-            print_error "Cannot install curl automatically"
-            exit 1
-        fi
+        apt-get update && apt-get install -y curl >/dev/null 2>&1
         print_success "curl installed"
     fi
 }
 
+# Run remote script
 run_script() {
     local url=$1
     local name=$2
     
     print_header
-    echo -e "${CYAN}Running: ${BOLD}${name}${NC}"
+    echo -e "${NEON}Running: ${BOLD}${name}${NC}"
     print_header
     
     check_curl
     local temp=$(mktemp)
-    print_status "Downloading script"
+    print_status "Downloading"
     
     if curl -fsSL "$url" -o "$temp"; then
         print_success "Downloaded"
         chmod +x "$temp"
         bash "$temp"
-        local code=$?
         rm -f "$temp"
-        if [ $code -eq 0 ]; then
-            print_success "Completed"
-        else
-            print_error "Failed with code: $code"
-        fi
     else
         print_error "Download failed"
     fi
@@ -74,165 +69,89 @@ run_script() {
     read -p "$(echo -e "${YELLOW}Press Enter to continue...${NC}")" -n 1
 }
 
-system_info() {
-    print_header
-    echo -e "${CYAN}               📊 SYSTEM INFORMATION              ${NC}"
-    print_header
-    echo -e ""
-    echo -e "${WHITE}╔═══════════════════════════════════════════════╗${NC}"
-    echo -e "${WHITE}║ ${CYAN}Hostname:${NC}  $(hostname)"
-    echo -e "${WHITE}║ ${CYAN}User:${NC}      $(whoami)"
-    echo -e "${WHITE}║ ${CYAN}System:${NC}    $(uname -srm)"
-    echo -e "${WHITE}║ ${CYAN}Uptime:${NC}    $(uptime -p 2>/dev/null || echo 'N/A')"
-    echo -e "${WHITE}║ ${CYAN}Memory:${NC}    $(free -h 2>/dev/null | awk '/Mem:/ {print $3"/"$2}' || echo 'N/A')"
-    echo -e "${WHITE}║ ${CYAN}Disk:${NC}      $(df -h / 2>/dev/null | awk 'NR==2 {print $3"/"$2" ("$5")"}' || echo 'N/A')"
-    echo -e "${WHITE}╚═══════════════════════════════════════════════╝${NC}"
-    echo ""
-    read -p "$(echo -e "${YELLOW}Press Enter to continue...${NC}")" -n 1
-}
+# Animated header
+header=(
+"========================="
+" __   __  ___   _______ "
+"|  | |  ||   | |       |"
+"|  |_|  ||   | |   _   |"
+"|       ||   | |  | |  |"
+"|       ||   | |  |_|  |"
+"|   _   ||   | |       |"
+"|__| |__||___| |_______|"
+"     POWERED BY HIO     "
+"========================="
+)
 
-tailscale_setup() {
-    print_header
-    echo -e "${CYAN}Running: ${BOLD}Tailscale Installer${NC}"
-    print_header
-    
-    check_curl
-    if curl -fsSL https://tailscale.com/install.sh | sh; then
-        print_success "Tailscale installed"
-        if command -v systemctl &>/dev/null; then
-            systemctl enable --now tailscaled || true
-        fi
-        echo -e "${CYAN}Starting Tailscale...${NC}"
-        if [ -n "${TS_AUTH_KEY:-}" ]; then
-            tailscale up --auth-key="$TS_AUTH_KEY" && print_success "Connected via auth key"
-        else
-            tailscale up && print_success "Connected"
-            echo -e "${YELLOW}Tip: Set TS_AUTH_KEY for non-interactive auth${NC}"
-        fi
-    else
-        print_error "Installation failed"
-    fi
-    
-    echo ""
-    read -p "$(echo -e "${YELLOW}Press Enter to continue...${NC}")" -n 1
-}
-
-database_setup() {
-    print_header
-    echo -e "${CYAN}           🗄️  DATABASE REMOTE ACCESS SETUP       ${NC}"
-    print_header
-    
-    read -p "Enter new database username: " DB_USER
-    read -sp "Enter password: " DB_PASS
-    echo ""
-    
-    echo -e "${YELLOW}Creating user '$DB_USER'...${NC}"
-    
-    mysql -u root -p <<MYSQL_SCRIPT
-CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
-GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-MYSQL_SCRIPT
-
-    CONF="/etc/mysql/mariadb.conf.d/50-server.cnf"
-    if [ -f "$CONF" ]; then
-        echo -e "${YELLOW}Updating bind-address...${NC}"
-        sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' "$CONF"
-    fi
-    
-    echo -e "${YELLOW}Restarting services...${NC}"
-    systemctl restart mysql 2>/dev/null || true
-    systemctl restart mariadb 2>/dev/null || true
-    
-    if command -v ufw &>/dev/null; then
-        ufw allow 3306/tcp >/dev/null 2>&1
-        echo -e "${GREEN}Port 3306 opened${NC}"
-    fi
-    
-    print_success "User '$DB_USER' created with remote access!"
-    
-    echo ""
-    read -p "$(echo -e "${YELLOW}Press Enter to continue...${NC}")" -n 1
-}
+# Menu options
+menu=(
+"  ${WHITE}1)${NC} ${YELLOW}Panel Installation${NC}"
+"  ${WHITE}2)${NC} ${YELLOW}Wings Installation${NC}"
+"  ${WHITE}3)${NC} ${YELLOW}Panel Update${NC}"
+"  ${WHITE}4)${NC} ${YELLOW}Uninstall Tools${NC}"
+"  ${WHITE}5)${NC} ${YELLOW}Blueprint Setup${NC}"
+"  ${WHITE}6)${NC} ${YELLOW}Cloudflare Tunnel${NC}"
+"  ${WHITE}7)${NC} ${YELLOW}Theme Manager${NC}"
+"  ${WHITE}8)${NC} ${YELLOW}System Information${NC}"
+"  ${WHITE}9)${NC} ${YELLOW}Tailscale VPN${NC}"
+" ${WHITE}10)${NC} ${YELLOW}Database Setup${NC}"
+" ${WHITE}11)${NC} ${YELLOW}Blueprint Extensions${NC}"
+" ${WHITE}12)${NC} ${YELLOW}DDoS Protection${NC}"
+"  ${WHITE}0)${NC} ${RED}Exit${NC}"
+)
 
 show_menu() {
     clear
+    
+    # Animated header
+    for line in "${header[@]}"; do
+        echo -e "${NEON}${BOLD}$line${NC}"
+        sleep 0.04
+    done
+    
+    echo ""
     print_header
-    echo -e "${CYAN}            🚀 HIO'S HOSTING MANAGER              ${NC}"
-    echo -e "${CYAN}                  Pterodactyl Tools               ${NC}"
+    echo ""
+    
+    # Menu options
+    for option in "${menu[@]}"; do
+        echo -e "$option"
+        sleep 0.02
+    done
+    
+    echo ""
     print_header
-    echo -e "${CYAN}"
-    echo "  _    _ _       "
-    echo " | |  | (_)      "
-    echo " | |__| |_  ___  "
-    echo " |  __  | |/ _ \ "
-    echo " | |  | | | (_) |"
-    echo " |_|  |_|_|\___/ "
-    echo -e "${NC}"
-    print_header
-    echo -e ""
-    echo -e "${WHITE}${BOLD}  1)${NC} ${CYAN}Panel Installation${NC}"
-    echo -e "${WHITE}${BOLD}  2)${NC} ${CYAN}Wings Installation${NC}"
-    echo -e "${WHITE}${BOLD}  3)${NC} ${CYAN}Panel Update${NC}"
-    echo -e "${WHITE}${BOLD}  4)${NC} ${CYAN}Uninstall Tools${NC}"
-    echo -e "${WHITE}${BOLD}  5)${NC} ${CYAN}Blueprint Setup${NC}"
-    echo -e "${WHITE}${BOLD}  6)${NC} ${CYAN}Cloudflare Setup${NC}"
-    echo -e "${WHITE}${BOLD}  7)${NC} ${CYAN}Theme Manager${NC}"
-    echo -e "${WHITE}${BOLD}  8)${NC} ${CYAN}System Information${NC}"
-    echo -e "${WHITE}${BOLD}  9)${NC} ${CYAN}Tailscale (VPN)${NC}"
-    echo -e "${WHITE}${BOLD} 10)${NC} ${CYAN}Database Setup${NC}"
-    echo -e "${WHITE}${BOLD} 11)${NC} ${CYAN}Blueprint Extensions${NC}"
-    echo -e "${WHITE}${BOLD}  0)${NC} ${RED}Exit${NC}"
-    echo -e ""
-    print_header
-    echo -e "${YELLOW}${BOLD}📝 Select option [0-11]: ${NC}"
+    echo -e "${RED}${BOLD}📝 Select option [0-12]: ${NC}"
 }
 
-welcome() {
-    clear
-    print_header
-    echo -e "${CYAN}"
-    echo "  _    _ _       "
-    echo " | |  | (_)      "
-    echo " | |__| |_  ___  "
-    echo " |  __  | |/ _ \ "
-    echo " | |  | | | (_) |"
-    echo " |_|  |_|_|\___/ "
-    echo -e "${NC}"
-    echo -e "${CYAN}                 Hosting Manager${NC}"
-    print_header
-    sleep 1
-}
-
-# Main
-welcome
-
+# Main loop
 while true; do
     show_menu
     read -r choice
     
     case $choice in
-        1) run_script "${BASE_URL}/panel.sh" "Panel Installation" ;;
-        2) run_script "${BASE_URL}/wings.sh" "Wings Installation" ;;
-        3) run_script "${BASE_URL}/update.sh" "Panel Update" ;;
-        4) run_script "${BASE_URL}/uninstall.sh" "Uninstall Tools" ;;
-        5) run_script "${BASE_URL}/blueprint.sh" "Blueprint Setup" ;;
-        6) run_script "${BASE_URL}/cloudflare.sh" "Cloudflare Setup" ;;
-        7) run_script "${BASE_URL}/theme.sh" "Theme Manager" ;;
-        8) system_info ;;
-        9) tailscale_setup ;;
-        10) database_setup ;;
+        1)  run_script "${BASE_URL}/panel.sh" "Panel Installation" ;;
+        2)  run_script "${BASE_URL}/wings.sh" "Wings Installation" ;;
+        3)  run_script "${BASE_URL}/update.sh" "Panel Update" ;;
+        4)  run_script "${BASE_URL}/uninstall.sh" "Uninstall Tools" ;;
+        5)  run_script "${BASE_URL}/blueprint.sh" "Blueprint Setup" ;;
+        6)  run_script "${BASE_URL}/cloudflare.sh" "Cloudflare Tunnel" ;;
+        7)  run_script "${BASE_URL}/theme.sh" "Theme Manager" ;;
+        8)  run_script "${BASE_URL}/sysinfo.sh" "System Information" ;;
+        9)  run_script "${BASE_URL}/tailscale.sh" "Tailscale VPN" ;;
+        10) run_script "${BASE_URL}/database.sh" "Database Setup" ;;
         11) run_script "${BASE_URL}/extensions.sh" "Blueprint Extensions" ;;
+        12) run_script "${BASE_URL}/ddosProtection.sh" "DDoS Protection" ;;
         0)
-            echo -e "${GREEN}Exiting Hio's Hosting Manager...${NC}"
+            echo -e "${GREEN}Exiting Hio Hosting Manager...${NC}"
             print_header
-            echo -e "${CYAN}         Thank you for using Hio's Tools!      ${NC}"
+            animate_text "         Thank you for using Hio Tools!" 0.02
             print_header
             sleep 1
             exit 0
             ;;
         *)
-            print_error "Invalid option! Choose 0-11"
+            print_error "Invalid option! Choose 0-12"
             sleep 1
             ;;
     esac

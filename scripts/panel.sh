@@ -1,27 +1,25 @@
 #!/bin/bash
 clear
 
-# Colors for output
-RED='\033[0;31m'
+# Color Scheme: Neon Green, Red, Yellow
+NEON='\033[38;5;118m'       # Hijau stabilo/neon green
+RED='\033[0;91m'            # Merah terang
+YELLOW='\033[0;93m'         # Kuning terang
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${CYAN} $1 ${NC}"
-    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+    echo -e "\n${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON} $1 ${NC}"
+    echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
 print_success() { echo -e "${GREEN}✅ $1${NC}"; }
 print_error() { echo -e "${RED}❌ $1${NC}"; }
-print_warning() { echo -e "${MAGENTA}⚠️  $1${NC}"; }
+print_warning() { echo -e "${RED}⚠️  $1${NC}"; }
 
 # Check root
 if [ "$EUID" -ne 0 ]; then
@@ -30,13 +28,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}"
-echo ' ______  ______  __   __  ______  __           '
-echo '/\  == \/\  __ \/\ "-.\ \/\  ___\/\ \          '
-echo '\ \  _-/\ \  __ \ \ \-.  \ \  __\\ \ \____     '
-echo ' \ \_\   \ \_\ \_\ \_\\"\_\ \_____\ \_____\    '
-echo '  \/_/    \/_/\/_/\/_/ \/_/\/_____/\/_____/    '
-echo -e "${NC}"
 echo -e "${CYAN}           Pterodactyl Panel Installer${NC}"
 echo -e "${CYAN}                    by Hio${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
@@ -271,5 +262,5 @@ echo -e "  ${CYAN}•${NC} Access your panel at ${GREEN}https://${DOMAIN}${NC}"
 echo -e "  ${CYAN}•${NC} Install Wings on your game nodes"
 echo -e ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}              Thank you for using Hio's Tools!   ${NC}"
+echo -e "${CYAN}              Thank you for using Hio Tools!   ${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

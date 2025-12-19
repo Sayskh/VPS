@@ -1,25 +1,18 @@
 #!/bin/bash
 
+# Color Scheme: Neon Green, Red, Yellow
+NEON='\033[38;5;118m'       # Hijau stabilo/neon green
+RED='\033[0;91m'            # Merah terang
+YELLOW='\033[0;93m'         # Kuning terang
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-RED='\033[0;31m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
 clear
-echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}"
-echo ' ______  __  __  ______  __    __  ______       '
-echo '/\__  _\/\ \_\ \/\  ___\/\ "-./  \/\  ___\      '
-echo '\/_/\ \/\ \  __ \ \  __\\ \ \-./\ \ \  __\      '
-echo '   \ \_\ \ \_\ \_\ \_____\ \_\ \ \_\ \_____\    '
-echo '    \/_/  \/_/\/_/\/_____/\/_/  \/_/\/_____/    '
-echo -e "${NC}"
-echo -e "${CYAN}           Pterodactyl Theme Manager${NC}"
-echo -e "${CYAN}                   by Hio${NC}"
-echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${NEON}           Pterodactyl Theme Manager${NC}"
+echo -e "${NEON}                   by Hio${NC}"
+echo -e "${NEON}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}❌ Please run as root${NC}"
