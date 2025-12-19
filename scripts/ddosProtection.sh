@@ -132,12 +132,27 @@ modprobe nf_conntrack_ipv4 2>/dev/null || true
 
 print_status "Configuring iptables rules..."
 
-# Flush existing rules (be careful!)
+# Check if Docker is running
+DOCKER_RUNNING=false
+if systemctl is-active --quiet docker 2>/dev/null; then
+    DOCKER_RUNNING=true
+    print_warning "Docker detected - will preserve Docker chains"
+fi
+
+# Flush rules safely (preserve Docker chains if Docker is running)
 print_warning "Flushing existing rules..."
-iptables -F
-iptables -X
-iptables -t mangle -F
-iptables -t mangle -X
+
+if [ "$DOCKER_RUNNING" = true ]; then
+    # Only flush INPUT chain, preserve FORWARD and Docker chains
+    iptables -F INPUT
+    iptables -t mangle -F
+else
+    # No Docker, safe to flush everything
+    iptables -F
+    iptables -X
+    iptables -t mangle -F
+    iptables -t mangle -X
+fi
 
 # Default policies - ACCEPT (we'll drop bad traffic explicitly)
 iptables -P INPUT ACCEPT
