@@ -1,14 +1,15 @@
 #!/bin/bash
-NEON='\033[38;5;118m'
-ORANGE='\033[38;5;208m'
-PURPLE='\033[0;35m'
-RED='\033[0;91m'
-YELLOW='\033[0;93m'
-GREEN='\033[0;32m'
+NEON='\033[38;2;43;233;138m'
+MAGENTA='\033[38;2;249;38;114m'
+BLUE='\033[38;2;50;142;255m'
+RED='\033[38;2;230;42;25m'
+YELLOW='\033[38;2;230;219;116m'
+GREEN='\033[38;2;43;233;138m'
+CYAN='\033[38;2;73;224;253m'
 NC='\033[0m'
 
 print_header() {
-    echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -17,8 +18,8 @@ print_error() { echo -e "${RED}❌ $1${NC}"; }
 
 clear
 print_header
-echo -e "${ORANGE}         System Benchmark (bench.sh)${NC}"
-echo -e "${ORANGE}              by Teddysun${NC}"
+echo -e "${NEON}         System Benchmark (bench.sh)${NC}"
+echo -e "${NEON}              by Teddysun${NC}"
 print_header
 echo ""
 

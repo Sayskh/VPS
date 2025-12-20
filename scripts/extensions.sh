@@ -1,18 +1,18 @@
 #!/bin/bash
-
-NEON='\033[38;5;118m'
-ORANGE='\033[38;5;208m'
-PURPLE='\033[0;35m'
-RED='\033[0;91m'
-YELLOW='\033[0;93m'
-GREEN='\033[0;32m'
+NEON='\033[38;2;43;233;138m'
+MAGENTA='\033[38;2;249;38;114m'
+BLUE='\033[38;2;50;142;255m'
+RED='\033[38;2;230;42;25m'
+YELLOW='\033[38;2;230;219;116m'
+GREEN='\033[38;2;43;233;138m'
+CYAN='\033[38;2;73;224;253m'
 NC='\033[0m'
 
 clear
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${ORANGE}        Blueprint Extensions Installer${NC}"
-echo -e "${ORANGE}                  by Hio${NC}"
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${NEON}        Blueprint Extensions Installer${NC}"
+echo -e "${NEON}                  by Hio${NC}"
+echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
 
 if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}❌ Please run as root${NC}"

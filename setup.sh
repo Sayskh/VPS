@@ -1,10 +1,11 @@
 #!/bin/bash
-NEON='\033[38;5;118m'    
-ORANGE='\033[38;5;208m'   
-PURPLE='\033[0;35m'   
-RED='\033[0;91m'       
-GREEN='\033[0;32m'
-YELLOW='\033[0;93m'
+NEON='\033[38;2;43;233;138m'     
+MAGENTA='\033[38;2;249;38;114m'  
+BLUE='\033[38;2;50;142;255m' 
+RED='\033[38;2;230;42;25m'       
+YELLOW='\033[38;2;230;219;116m' 
+GREEN='\033[38;2;43;233;138m'  
+CYAN='\033[38;2;73;224;253m' 
 WHITE='\033[1;37m'
 BOLD='\033[1m'
 NC='\033[0m'
@@ -23,7 +24,7 @@ animate_text() {
 }
 
 print_header() {
-    echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 }
 
 print_status() { echo -e "${YELLOW}⏳ $1...${NC}"; }
@@ -45,7 +46,7 @@ run_script() {
     local name=$2
     
     print_header
-    echo -e "${ORANGE}Running: ${BOLD}${name}${NC}"
+    echo -e "${NEON}Running: ${BOLD}${name}${NC}"
     print_header
     
     check_curl
@@ -99,7 +100,7 @@ show_menu() {
     clear
     
     for line in "${header[@]}"; do
-        echo -e "${ORANGE}${BOLD}$line${NC}"
+        echo -e "${NEON}${BOLD}$line${NC}"
         sleep 0.04
     done
     
@@ -108,13 +109,13 @@ show_menu() {
     echo ""
     
     for option in "${menu[@]}"; do
-        echo -e "${PURPLE}$option${NC}"
+        echo -e "${BLUE}$option${NC}"
         sleep 0.02
     done
     
     echo ""
     print_header
-    echo -e "${ORANGE}${BOLD}📝 Select option [0-12]: ${NC}"
+    echo -e "${CYAN}${BOLD}📝 Select option [0-12]: ${NC}"
 }
 
 # Main loop
